@@ -1,0 +1,75 @@
+#Final Project Deliverable - Griffin Biddle
+
+from collections import Counter
+#Small note about the counter function below, plus a reference:
+"""
+The counter function was found online thanks to: https://realpython.com/python-counter/. The entire code below relies on said function,
+and without it, it wouldn't work properly. The credited site taught me how to import it and utilize it properly, so I just wanted to have 
+it listed right at the top. I know we learned counter in class briefly, but I couldn't remember how to use it properly, hence the research 
+and the listed source. - Griffin
+"""
+
+#Defining what the quiz is going to be
+def personality_quiz():
+
+#List of questions and answer choices
+    questions = [
+        "What is your favorite outdoor activity?\n(a) Hiking\n(b) Swimming\n(c) Gardening\n(d) None, would rather be inside playing with circuitry",
+        "How do you handle stress?\n(a) Handle it head on\n(b) Deep breaths and think it through\n(c) Ask friends for help\n(d) Play videogames to unwind and deal with it later",
+        "Which word best describes you?\n(a) Hotheaded\n(b) Calm\n(c) Understanding\n(d) Adventurous",
+        "What's your preferred weather?\n(a) Sunny\n(b) Rainy\n(c) Windy\n(d) Thunderstorms",
+        "Favorite color?\n(a) Red\n(b) Blue\n(c) Green\n(d) Yellow",
+        "What's your ideal weekend activity?\n(a) Hanging out by the campfire\n(b) Going to the beach\n(c) Gardening some more\n(d) Gaming",
+        "How would you describe your work style?\n(a) Focused and driven\n(b) Organized and methodical\n(c) Collaborative and supportive\n(d) Impulsive and quick-witted",
+        "What's your favorite type of music?\n(a) Rock\n(b) Jazz\n(c) Country\n(d) Punk",
+        "How do you approach decision-making?\n(a) Go with your gut\n(b) Weigh out options\n(c) Get the opinion of others and base it off them\n(d) Make a sporatic decision, usually risky",
+        "What's your spirit animal?\n(a) Lion\n(b) Dolphin\n(c) Koala\n(d) Cheetah",
+    ]
+#List of possible results
+    types = {
+        'a': "Fire Type",
+        'b': "Water Type",
+        'c': "Grass Type",
+        'd': "Electric Type",
+    }
+
+    answers = []
+
+#Introduction to the quiz
+    print("Welcome to the Personality Pokemon Quiz!")
+#Continued introduction
+    print("Answer the following questions to see which Pokemon type you most resemble. Respond to each question by choosing the answer that matches the prompt most for you. Do this by typing a, b, c, or d. It is not case sensitive:")
+
+#Increases the question number by 1 each time and continues to next question
+    for number, question in enumerate(questions, start=1):
+        print(f"\nQuestion {number}: {question}")
+        answer = input("Your answer: ").lower()
+
+#This line exists for troubleshooing incase the user doesn't input a, b, c or d for their response
+        while answer not in ["a", "b", "c", "d"]:
+            print("You inputed an answer option that doesn't exist. Please choose either a, b, c or d.")
+#Allows for the input to also be lowercase, so the inputs are not case sensitive.
+            answer = input("Your answer: ").lower()
+        answers.append(answer)
+
+#How results are calculated
+    answer_counts = Counter(answers)
+    max_count = max(answer_counts.values())
+
+#Results for singular type or a tie between types
+    tie_results = [result for result, count in answer_counts.items() if count == max_count]
+
+    if len(tie_results) == 1:
+        result_type = tie_results[0]
+        print("\nThanks for finishing the quiz! The Pokemon type you most resemble is a:")
+        print(types[result_type])
+    else:
+        print("\nThanks for finishing the quiz! Based on your answers, you equally resemble the following Pokemon types:")
+        for result_type in tie_results:
+            print(types[result_type])
+
+#Final message to the user
+    print("Thanks for taking part in my short Pokemon type quiz, I hope you enjoyed.")
+
+#Line of code to put in the terminal if the user wanted to run the quiz again.
+personality_quiz()
