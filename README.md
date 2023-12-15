@@ -1,5 +1,6 @@
 # Final-Project
 Final Project for INST126. Done by Griffin Biddle
+
 #What the program does:
 """
 This program is a short quiz that will tell the user what type of pokemon they most resemble. They will answer a series of questions,
